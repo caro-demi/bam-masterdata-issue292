@@ -7542,6 +7542,90 @@ class MassSpec(Instrument):
         section="Technical Details",
     )
 
+    # changes
+    ion_source = PropertyTypeAssignment(
+        code="IONIZATION_TYPE",
+        data_type="CONTROLLEDVOCABULARY",
+        property_label="Ion source",
+        description="""Ionization Type//Ionenquelle""",
+        mandatory=False,
+        section="Technical Details",
+    )
+
+    chromatography = PropertyTypeAssignment(
+        code="CHROMATOGRAPHY_TYPE",
+        data_type="CONTROLLEDVOCABULARY",
+        property_label="Chromatography",
+        description="""Separator Type//Trennverfahren""",
+        mandatory=False,
+        section="Technical Details",
+    )
+
+    detector = PropertyTypeAssignment(
+        code="DETECTOR_TYPE",
+        data_type="CONTROLLEDVOCABULARY",
+        property_label="Detector",
+        description="""Detector Type//Analysator""",
+        mandatory=False,
+        section="Technical Details",
+    )
+
+
+class LcSystem(Instrument):
+    defs = ObjectTypeDef(
+        code="INSTRUMENT.LC_SYSTEM",
+        description="""GC-System//GC-System""",
+        generated_code_prefix="INS.MS",
+    )
+
+    detector_type = PropertyTypeAssignment(
+        code="DETECTOR_TYPE",
+        data_type="CONTROLLEDVOCABULARY",
+        property_label="Detector",
+        description="""Detector Type//Analysator""",
+        mandatory=False,
+        section="Technical Details",
+        vocabulary_code="DETECTOR_TYPE",
+    )
+
+    detector_type_secondary = PropertyTypeAssignment(
+        code="DETECTOR_TYPE_SECONDARY",
+        data_type="CONTROLLEDVOCABULARY",
+        property_label="Detector",
+        description="""Detector Type//Analysator""",
+        mandatory=False,
+        section="Technical Details",
+        vocabulary_code="DETECTOR_TYPE",
+    )
+
+
+class GcSystem(Instrument):
+    defs = ObjectTypeDef(
+        code="INSTRUMENT.GC_SYSTEM",
+        description="""GC-System//GC-System""",
+        generated_code_prefix="INS.MS",
+    )
+
+    detector_type = PropertyTypeAssignment(
+        code="DETECTOR_TYPE",
+        data_type="CONTROLLEDVOCABULARY",
+        property_label="Detector",
+        description="""Detector Type//Analysator""",
+        mandatory=False,
+        section="Technical Details",
+        vocabulary_code="DETECTOR_TYPE",
+    )
+
+    detector_type_secondary = PropertyTypeAssignment(
+        code="DETECTOR_TYPE_SECONDARY",
+        data_type="CONTROLLEDVOCABULARY",
+        property_label="Detector",
+        description="""Detector Type//Analysator""",
+        mandatory=False,
+        section="Technical Details",
+        vocabulary_code="DETECTOR_TYPE",
+    )
+
 
 class Scale(Instrument):
     defs = ObjectTypeDef(
