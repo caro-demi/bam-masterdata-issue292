@@ -7589,7 +7589,6 @@ class LcSystem(Instrument):
         description="""Detector Type//Analysator""",
         mandatory=False,
         section="Technical Details",
-        vocabulary_code="DETECTOR_TYPE",
     )
 
     detector_type_secondary = PropertyTypeAssignment(
@@ -7600,7 +7599,6 @@ class LcSystem(Instrument):
         description="""Detector Type//Analysator""",
         mandatory=False,
         section="Technical Details",
-        vocabulary_code="DETECTOR_TYPE",
     )
 
 
@@ -7619,7 +7617,6 @@ class GcSystem(Instrument):
         description="""Detector Type//Analysator""",
         mandatory=False,
         section="Technical Details",
-        vocabulary_code="DETECTOR_TYPE",
     )
 
     detector_type_secondary = PropertyTypeAssignment(
@@ -7630,7 +7627,6 @@ class GcSystem(Instrument):
         description="""Detector Type//Analysator""",
         mandatory=False,
         section="Technical Details",
-        vocabulary_code="DETECTOR_TYPE",
     )
 
 
