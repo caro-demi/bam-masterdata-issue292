@@ -7546,6 +7546,7 @@ class MassSpec(Instrument):
     ion_source = PropertyTypeAssignment(
         code="IONIZATION_TYPE",
         data_type="CONTROLLEDVOCABULARY",
+        vocabulary_code="IONIZATION_TYPE",
         property_label="Ion source",
         description="""Ionization Type//Ionenquelle""",
         mandatory=False,
@@ -7555,6 +7556,7 @@ class MassSpec(Instrument):
     chromatography = PropertyTypeAssignment(
         code="CHROMATOGRAPHY_TYPE",
         data_type="CONTROLLEDVOCABULARY",
+        vocabulary_code="CHROMATOGRAPHY_TYPE",
         property_label="Chromatography",
         description="""Separator Type//Trennverfahren""",
         mandatory=False,
@@ -7564,6 +7566,7 @@ class MassSpec(Instrument):
     detector = PropertyTypeAssignment(
         code="DETECTOR_TYPE",
         data_type="CONTROLLEDVOCABULARY",
+        vocabulary_code="DETECTOR_TYPE",
         property_label="Detector",
         description="""Detector Type//Analysator""",
         mandatory=False,
@@ -7574,13 +7577,14 @@ class MassSpec(Instrument):
 class LcSystem(Instrument):
     defs = ObjectTypeDef(
         code="INSTRUMENT.LC_SYSTEM",
-        description="""GC-System//GC-System""",
-        generated_code_prefix="INS.MS",
+        description="""LC-System//LC-System""",
+        generated_code_prefix="INS.LC",
     )
 
     detector_type = PropertyTypeAssignment(
         code="DETECTOR_TYPE",
         data_type="CONTROLLEDVOCABULARY",
+        vocabulary_code="DETECTOR_TYPE",
         property_label="Detector",
         description="""Detector Type//Analysator""",
         mandatory=False,
@@ -7591,6 +7595,7 @@ class LcSystem(Instrument):
     detector_type_secondary = PropertyTypeAssignment(
         code="DETECTOR_TYPE_SECONDARY",
         data_type="CONTROLLEDVOCABULARY",
+        vocabulary_code="DETECTOR_TYPE",
         property_label="Detector",
         description="""Detector Type//Analysator""",
         mandatory=False,
@@ -7603,12 +7608,13 @@ class GcSystem(Instrument):
     defs = ObjectTypeDef(
         code="INSTRUMENT.GC_SYSTEM",
         description="""GC-System//GC-System""",
-        generated_code_prefix="INS.MS",
+        generated_code_prefix="INS.GC",
     )
 
     detector_type = PropertyTypeAssignment(
         code="DETECTOR_TYPE",
         data_type="CONTROLLEDVOCABULARY",
+        vocabulary_code="DETECTOR_TYPE",
         property_label="Detector",
         description="""Detector Type//Analysator""",
         mandatory=False,
@@ -7619,6 +7625,7 @@ class GcSystem(Instrument):
     detector_type_secondary = PropertyTypeAssignment(
         code="DETECTOR_TYPE_SECONDARY",
         data_type="CONTROLLEDVOCABULARY",
+        vocabulary_code="DETECTOR_TYPE",
         property_label="Detector",
         description="""Detector Type//Analysator""",
         mandatory=False,
