@@ -201,19 +201,19 @@ class MsIonPolarity(VocabularyType):
     )
 
     pos = VocabularyTerm(
-        code="POS",
+        code="POSITIVE",
         label="Positive",
         description="""Positive Ion//Positive Ionen""",
     )
 
     neg = VocabularyTerm(
-        code="NEG",
+        code="NEGATIVE",
         label="Negative",
         description="""Negative Ion//Negative Ionen""",
     )
 
     posneg = VocabularyTerm(
-        code="POSNEG",
+        code="POSITIVENEGATIVE",
         label="Positive/Negative",
         description="""Positive and Negative Ions//Positive und Negative Ionen""",
     )
