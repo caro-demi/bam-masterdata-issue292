@@ -30,6 +30,7 @@ from bam_masterdata.metadata._maps import (
 from bam_masterdata.metadata.definitions import (
     CollectionTypeDef,
     DatasetTypeDef,
+    DataType,
     ObjectTypeDef,
     PropertyTypeAssignment,
     VocabularyTerm,
@@ -207,6 +208,7 @@ class BaseEntity(BaseModel):
                                 mandatory=prop.mandatory,
                                 showInEditView=prop.show_in_edit_views,
                                 vocabulary=prop.vocabulary_code,
+                                ordinal=prop.ordinal,
                             )
                         else:
                             entity.assign_property(
@@ -214,6 +216,7 @@ class BaseEntity(BaseModel):
                                 section=prop.section,
                                 mandatory=prop.mandatory,
                                 showInEditView=prop.show_in_edit_views,
+                                ordinal=prop.ordinal,
                             )
 
             if not new_properties_added:
@@ -235,7 +238,7 @@ class BaseEntity(BaseModel):
             # Assign properties to the new entity
             properties = getattr(self, "properties", [])
             for prop in properties:
-                logger.info(f"Adding new property {prop.code} to {defs.code}.")
+                logger.info(f"Adding new property '{prop.code}' to '{defs.code}'.")
                 # Handle special case for OBJECT or SAMPLE data types
                 if prop.data_type == "OBJECT" or prop.data_type == "SAMPLE":
                     prop.data_type = "SAMPLE"
@@ -246,6 +249,7 @@ class BaseEntity(BaseModel):
                     section=prop.section,
                     mandatory=prop.mandatory,
                     showInEditView=prop.show_in_edit_views,
+                    ordinal=prop.ordinal,
                 )
         else:
             # Transform the list of VocabularyTerm objects into the desired format
@@ -258,7 +262,7 @@ class BaseEntity(BaseModel):
                 for term in getattr(self, "terms", [])
             ]
             term_codes = ", ".join([term.code for term in getattr(self, "terms", [])])
-            logger.info(f"Adding new terms {term_codes} to {defs.code}.")
+            logger.info(f"Adding new terms {term_codes} to '{defs.code}'.")
             entity = create_type(openbis, defs, terms)
             entity.save()
 
@@ -580,7 +584,7 @@ class VocabularyType(BaseEntity):
             for term in self.terms:
                 if term.code not in obis_term_codes:
                     logger.info(
-                        f"Adding new term {term.code}' to vocabulary '{self.defs.code}'."
+                        f"Adding new term '{term.code}' to vocabulary '{self.defs.code}'."
                     )
                     new_terms_added = True
 
@@ -897,7 +901,7 @@ class ObjectType(BaseEntity):
             """
             # Handle special case for OBJECT data type to map into the legacy name
             if prop.data_type == "OBJECT":
-                prop.data_type = "SAMPLE"
+                prop.data_type = DataType.SAMPLE
 
             # If property does not exist in openBIS, create it before assigning to the entity
             if not openbis.get_property_types(prop.code):
@@ -926,6 +930,7 @@ class ObjectType(BaseEntity):
                     section=prop.section,
                     mandatory=prop.mandatory,
                     showInEditView=prop.show_in_edit_views,
+                    ordinal=prop.ordinal,
                 )
             else:
                 entity.assign_property(
@@ -933,6 +938,7 @@ class ObjectType(BaseEntity):
                     section=prop.section,
                     mandatory=prop.mandatory,
                     showInEditView=prop.show_in_edit_views,
+                    ordinal=prop.ordinal,
                 )
 
         # Get all existing entities from openBIS
@@ -951,7 +957,7 @@ class ObjectType(BaseEntity):
             for prop in self.properties:
                 if prop.code not in obis_property_codes:
                     logger.info(
-                        f"Adding new property {prop.code}' to object type '{self.defs.code}'."
+                        f"Adding new property '{prop.code}' to object type '{self.defs.code}'."
                     )
                     new_properties_added = True
                     _assign_property(prop, entity, openbis)
@@ -975,7 +981,7 @@ class ObjectType(BaseEntity):
             # Assign properties to the new entity
             for prop in self.properties:
                 logger.info(
-                    f"Adding new property {prop.code} to object type {self.defs.code}."
+                    f"Adding new property '{prop.code}' to object type '{self.defs.code}'."
                 )
                 _assign_property(prop, entity, openbis)
 
